@@ -18,11 +18,6 @@ namespace CSharpForm1
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnLogin_Click(object sender, EventArgs e)
         {
             //Connecting to a DB with a login system
