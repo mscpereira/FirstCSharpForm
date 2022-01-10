@@ -40,5 +40,37 @@ namespace CSharpForm1
 
             MessageBox.Show("Record saved successfully","Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            //1. SQL connection - connection string
+
+            SqlConnection con = new SqlConnection("Data Source=localhost; Database=FirstLoginDB; Integrated Security=true");
+            con.Open();
+
+            //2. SQL command - query to perform transaction
+
+            SqlCommand cmd = new SqlCommand("UPDATE [Employee] SET [FirstName]='"+txtFirstName.Text+ "', [LastName]='" + txtLastName.Text + "', [Email]='" + txtEmail.Text + "', [Gender]='" + txtGender.Text + "', [Salary]='" + txtSalary.Text + "', [HireDate]='" + dtHireDate.Value + "' Where ID='"+ txtID.Text +"'", con);
+
+            cmd.ExecuteNonQuery();
+
+            MessageBox.Show("Record updated successfully", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            //1. SQL connection - connection string
+
+            SqlConnection con = new SqlConnection("Data Source=localhost; Database=FirstLoginDB; Integrated Security=true");
+            con.Open();
+
+            //2. SQL command - query to perform transaction
+
+            SqlCommand cmd = new SqlCommand("DELETE FROM [Employee] WHERE ID='" + txtID.Text + "' ", con);
+
+            cmd.ExecuteNonQuery();
+
+            MessageBox.Show("Record deleted successfully", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
