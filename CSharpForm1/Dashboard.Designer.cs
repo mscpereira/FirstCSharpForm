@@ -30,8 +30,6 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -73,34 +71,19 @@
             this.textBox1.Text = "EMPLOYEE INFORMATION";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(79, 110);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(18, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "ID";
-            // 
-            // txtID
-            // 
-            this.txtID.Location = new System.Drawing.Point(108, 107);
-            this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(235, 20);
-            this.txtID.TabIndex = 2;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(40, 146);
+            this.label2.Location = new System.Drawing.Point(40, 110);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "First Name";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(108, 146);
+            this.txtFirstName.Location = new System.Drawing.Point(108, 107);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(235, 20);
             this.txtFirstName.TabIndex = 2;
@@ -108,7 +91,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(39, 189);
+            this.label3.Location = new System.Drawing.Point(39, 152);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 13);
             this.label3.TabIndex = 1;
@@ -116,7 +99,7 @@
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(108, 189);
+            this.txtLastName.Location = new System.Drawing.Point(108, 149);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(235, 20);
             this.txtLastName.TabIndex = 2;
@@ -131,7 +114,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(441, 189);
+            this.label4.Location = new System.Drawing.Point(441, 192);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(36, 13);
             this.label4.TabIndex = 3;
@@ -140,7 +123,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(425, 149);
+            this.label5.Location = new System.Drawing.Point(425, 155);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 13);
             this.label5.TabIndex = 4;
@@ -158,15 +141,15 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(108, 230);
+            this.txtEmail.Location = new System.Drawing.Point(108, 189);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(369, 20);
+            this.txtEmail.Size = new System.Drawing.Size(235, 20);
             this.txtEmail.TabIndex = 10;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(65, 233);
+            this.label7.Location = new System.Drawing.Point(65, 192);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(32, 13);
             this.label7.TabIndex = 9;
@@ -228,7 +211,7 @@
             // dtHireDate
             // 
             this.dtHireDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtHireDate.Location = new System.Drawing.Point(494, 146);
+            this.dtHireDate.Location = new System.Drawing.Point(494, 149);
             this.dtHireDate.Name = "dtHireDate";
             this.dtHireDate.Size = new System.Drawing.Size(264, 20);
             this.dtHireDate.TabIndex = 16;
@@ -254,8 +237,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtID);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Name = "Dashboard";
             this.Text = "Dashboard";
@@ -272,8 +253,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.Label label3;
