@@ -18,14 +18,8 @@ namespace CSharpForm1
             InitializeComponent();
         }
 
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
         public void EmptyString()
         {
-            txtID.Text = string.Empty;
             txtFirstName.Text = string.Empty;
             txtLastName.Text = string.Empty;
             txtEmail.Text = string.Empty;
@@ -43,77 +37,78 @@ namespace CSharpForm1
 
             //2. SQL command - query
 
-            String query = "INSERT INTO Employee(ID, FirstName, LastName, Email, Gender, Salary, HireDate) VALUES (@ID, @FirstName, @LastName, @Email, @Gender, @Salary, @HireDate)";
+            String query = "INSERT INTO Employee(FirstName, LastName, Email, Gender, Salary, HireDate) VALUES (@FirstName, @LastName, @Email, @Gender, @Salary, @HireDate)";
 
-                using (SqlCommand cmd = new SqlCommand(query, con))
+            using (SqlCommand cmd = new SqlCommand(query, con))
+            {
+                cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
+                cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
+                cmd.Parameters.AddWithValue("@email", txtEmail.Text);
+                cmd.Parameters.AddWithValue("@Gender", txtGender.Text);
+                cmd.Parameters.AddWithValue("@Salary", txtSalary.Text);
+                cmd.Parameters.AddWithValue("@HireDate", dtHireDate.Value);
+
+
+                //SqlCommand cmd = new SqlCommand("INSERT INTO Employee ([FirstName],[LastName],[Email],[Gender],[Salary],[HireDate]) VALUES ('" + txtFirstName.Text + "', '" + txtLastName.Text + "', '" + txtEmail.Text + "', '" + txtGender.Text + "', '" + txtSalary.Text + "', '" + dtHireDate.Value + "')", con);
+
+                try
                 {
-                    cmd.Parameters.AddWithValue("@id", txtID.Text);
-                    cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
-                    cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
-                    cmd.Parameters.AddWithValue("@email", txtEmail.Text);
-                    cmd.Parameters.AddWithValue("@Gender", txtGender.Text);
-                    cmd.Parameters.AddWithValue("@Salary", txtSalary.Text);
-                    cmd.Parameters.AddWithValue("@HireDate", dtHireDate.Value);
-
-
-                    //SqlCommand cmd = new SqlCommand("INSERT INTO Employee ([ID],[FirstName],[LastName],[Email],[Gender],[Salary],[HireDate]) VALUES ('" + txtID.Text + "', '" + txtFirstName.Text + "', '" + txtLastName.Text + "', '" + txtEmail.Text + "', '" + txtGender.Text + "', '" + txtSalary.Text + "', '" + dtHireDate.Value + "')", con);
-
-
                     con.Open();
-                    int result = cmd.ExecuteNonQuery();
-
-
-                    // Check Error
-                    if (result < 0)
-                        MessageBox.Show("Error");
-
+                    cmd.ExecuteNonQuery();
                     MessageBox.Show("Record saved successfully", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    loadEmployeeRecords();
+                    EmptyString();
+                }
+
+                catch (SqlException err)
+                {
+                    MessageBox.Show($"Error:{err.ToString()}", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
                     con.Close();
                 }
-                loadEmployeeRecords();
-
-                EmptyString();
+            }
         }
-
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            //1. SQL connection - connection string
+            ////1. SQL connection - connection string
 
-            SqlConnection con = new SqlConnection("Data Source=localhost; Database=FirstLoginDB; Integrated Security=true");
-            con.Open();
+            //SqlConnection con = new SqlConnection("Data Source=localhost; Database=FirstLoginDB; Integrated Security=true");
+            //con.Open();
 
-            //2. SQL command - query to perform transaction
+            ////2. SQL command - query to perform transaction
 
-            SqlCommand cmd = new SqlCommand("UPDATE [Employee] SET [FirstName]='"+txtFirstName.Text+ "', [LastName]='" + txtLastName.Text + "', [Email]='" + txtEmail.Text + "', [Gender]='" + txtGender.Text + "', [Salary]='" + txtSalary.Text + "', [HireDate]='" + dtHireDate.Value + "' Where ID='"+ txtID.Text +"'", con);
+            //SqlCommand cmd = new SqlCommand("UPDATE [Employee] SET [FirstName]='"+txtFirstName.Text+ "', [LastName]='" + txtLastName.Text + "', [Email]='" + txtEmail.Text + "', [Gender]='" + txtGender.Text + "', [Salary]='" + txtSalary.Text + "', [HireDate]='" + dtHireDate.Value + "' Where ID='"+ txtID.Text +"'", con);
 
-            cmd.ExecuteNonQuery();
+            //cmd.ExecuteNonQuery();
 
-            MessageBox.Show("Record updated successfully", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show("Record updated successfully", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            loadEmployeeRecords();
+            //loadEmployeeRecords();
 
-            EmptyString();
+            //EmptyString();
 
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //1. SQL connection - connection string
+            ////1. SQL connection - connection string
 
-            SqlConnection con = new SqlConnection("Data Source=localhost; Database=FirstLoginDB; Integrated Security=true");
-            con.Open();
+            //SqlConnection con = new SqlConnection("Data Source=localhost; Database=FirstLoginDB; Integrated Security=true");
+            //con.Open();
 
-            //2. SQL command - query to perform transaction
+            ////2. SQL command - query to perform transaction
 
-            SqlCommand cmd = new SqlCommand("DELETE FROM [Employee] WHERE ID='" + txtID.Text + "' ", con);
+            //SqlCommand cmd = new SqlCommand("DELETE FROM [Employee] WHERE ID='" + txtID.Text + "' ", con);
 
-            cmd.ExecuteNonQuery();
+            //cmd.ExecuteNonQuery();
 
-            MessageBox.Show("Record deleted successfully", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show("Record deleted successfully", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            loadEmployeeRecords();
+            //loadEmployeeRecords();
 
-            EmptyString();
+            //EmptyString();
 
         }
 
