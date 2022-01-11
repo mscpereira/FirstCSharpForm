@@ -85,7 +85,7 @@
             this.txtFirstName.Location = new System.Drawing.Point(108, 107);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(235, 20);
-            this.txtFirstName.TabIndex = 2;
+            this.txtFirstName.TabIndex = 1;
             // 
             // label3
             // 
@@ -142,7 +142,7 @@
             this.txtEmail.Location = new System.Drawing.Point(108, 189);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(235, 20);
-            this.txtEmail.TabIndex = 10;
+            this.txtEmail.TabIndex = 3;
             // 
             // label7
             // 
@@ -163,14 +163,14 @@
             this.txtGender.Location = new System.Drawing.Point(494, 107);
             this.txtGender.Name = "txtGender";
             this.txtGender.Size = new System.Drawing.Size(264, 21);
-            this.txtGender.TabIndex = 11;
+            this.txtGender.TabIndex = 4;
             // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(494, 297);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(92, 23);
-            this.btnSave.TabIndex = 12;
+            this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Save Record";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.button1_Click);
@@ -180,7 +180,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(592, 297);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(92, 23);
-            this.btnUpdate.TabIndex = 13;
+            this.btnUpdate.TabIndex = 8;
             this.btnUpdate.Text = "Update Record";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -193,7 +193,7 @@
             this.btnDelete.Location = new System.Drawing.Point(690, 297);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(68, 23);
-            this.btnDelete.TabIndex = 14;
+            this.btnDelete.TabIndex = 9;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -204,7 +204,7 @@
             this.dgvEmployee.Location = new System.Drawing.Point(43, 363);
             this.dgvEmployee.Name = "dgvEmployee";
             this.dgvEmployee.Size = new System.Drawing.Size(715, 281);
-            this.dgvEmployee.TabIndex = 15;
+            this.dgvEmployee.TabIndex = 10;
             // 
             // dtHireDate
             // 
@@ -212,7 +212,7 @@
             this.dtHireDate.Location = new System.Drawing.Point(494, 149);
             this.dtHireDate.Name = "dtHireDate";
             this.dtHireDate.Size = new System.Drawing.Size(264, 20);
-            this.dtHireDate.TabIndex = 16;
+            this.dtHireDate.TabIndex = 5;
             // 
             // Dashboard
             // 
