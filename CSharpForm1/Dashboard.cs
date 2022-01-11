@@ -23,6 +23,16 @@ namespace CSharpForm1
 
         }
 
+        public void EmptyString()
+        {
+            txtID.Text = string.Empty;
+            txtFirstName.Text = string.Empty;
+            txtLastName.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            txtGender.Text = string.Empty;
+            txtSalary.Text = string.Empty;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             //Connecting to a DB
@@ -30,17 +40,39 @@ namespace CSharpForm1
             //1. SQL connection - connection string
 
             SqlConnection con = new SqlConnection("Data Source=localhost; Database=FirstLoginDB; Integrated Security=true");
-            con.Open();
 
             //2. SQL command - query
 
-            SqlCommand cmd = new SqlCommand("INSERT INTO Employee ([ID],[FirstName],[LastName],[Email],[Gender],[Salary],[HireDate]) VALUES ('" + txtID.Text + "', '" + txtFirstName.Text + "', '" + txtLastName.Text + "', '" + txtEmail.Text + "', '" + txtGender.Text + "', '" + txtSalary.Text + "', '" + dtHireDate.Value + "')", con);
+            String query = "INSERT INTO Employee(ID, FirstName, LastName, Email, Gender, Salary, HireDate) VALUES (@ID, @FirstName, @LastName, @Email, @Gender, @Salary, @HireDate)";
 
-            cmd.ExecuteNonQuery();
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@id", txtID.Text);
+                    cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
+                    cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
+                    cmd.Parameters.AddWithValue("@email", txtEmail.Text);
+                    cmd.Parameters.AddWithValue("@Gender", txtGender.Text);
+                    cmd.Parameters.AddWithValue("@Salary", txtSalary.Text);
+                    cmd.Parameters.AddWithValue("@HireDate", dtHireDate.Value);
 
-            MessageBox.Show("Record saved successfully","Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            loadEmployeeRecords();
+                    //SqlCommand cmd = new SqlCommand("INSERT INTO Employee ([ID],[FirstName],[LastName],[Email],[Gender],[Salary],[HireDate]) VALUES ('" + txtID.Text + "', '" + txtFirstName.Text + "', '" + txtLastName.Text + "', '" + txtEmail.Text + "', '" + txtGender.Text + "', '" + txtSalary.Text + "', '" + dtHireDate.Value + "')", con);
+
+
+                    con.Open();
+                    int result = cmd.ExecuteNonQuery();
+
+
+                    // Check Error
+                    if (result < 0)
+                        MessageBox.Show("Error");
+
+                    MessageBox.Show("Record saved successfully", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    con.Close();
+                }
+                loadEmployeeRecords();
+
+                EmptyString();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -59,6 +91,9 @@ namespace CSharpForm1
             MessageBox.Show("Record updated successfully", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             loadEmployeeRecords();
+
+            EmptyString();
+
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -77,6 +112,9 @@ namespace CSharpForm1
             MessageBox.Show("Record deleted successfully", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             loadEmployeeRecords();
+
+            EmptyString();
+
         }
 
         public void loadEmployeeRecords()
