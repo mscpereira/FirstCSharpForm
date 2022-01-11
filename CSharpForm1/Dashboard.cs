@@ -18,11 +18,6 @@ namespace CSharpForm1
             InitializeComponent();
         }
 
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
         public void EmptyString()
         {
             txtFirstName.Text = string.Empty;
@@ -147,11 +142,6 @@ namespace CSharpForm1
         private void Dashboard_Load(object sender, EventArgs e)
         {
             loadEmployeeRecords();
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

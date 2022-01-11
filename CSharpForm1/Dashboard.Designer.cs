@@ -79,7 +79,6 @@
             this.label2.Size = new System.Drawing.Size(57, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "First Name";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtFirstName
             // 
@@ -137,7 +136,6 @@
             this.label6.Size = new System.Drawing.Size(42, 13);
             this.label6.TabIndex = 5;
             this.label6.Text = "Gender";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // txtEmail
             // 
