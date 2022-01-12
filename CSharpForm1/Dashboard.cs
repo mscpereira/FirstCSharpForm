@@ -15,8 +15,9 @@ namespace CSharpForm1
     {
         public Dashboard()
         {
-            InitializeComponent();
+            InitializeComponent();     
         }
+
 
         public void EmptyString()
         {
@@ -27,7 +28,7 @@ namespace CSharpForm1
             txtSalary.Text = string.Empty;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             //Connecting to a DB
             //Things needed:
@@ -64,33 +65,51 @@ namespace CSharpForm1
                 {
                     MessageBox.Show($"Error:{err.ToString()}", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                finally
-                {
-                    con.Close();
-                }
+                con.Close();
             }
         }
 
 
-
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            ////1. SQL connection - connection string
+            decimal sal = decimal.Parse(txtSalary.Text);
+            //1. SQL connection - connection string
 
-            //SqlConnection con = new SqlConnection("Data Source=localhost; Database=FirstLoginDB; Integrated Security=true");
-            //con.Open();
+            SqlConnection con = new SqlConnection("Data Source=localhost; Database=FirstLoginDB; Integrated Security=true");      
 
-            ////2. SQL command - query to perform transaction
+            //2. SQL command - query to perform transaction
 
-            //SqlCommand cmd = new SqlCommand("UPDATE [Employee] SET [FirstName]='"+txtFirstName.Text+ "', [LastName]='" + txtLastName.Text + "', [Email]='" + txtEmail.Text + "', [Gender]='" + txtGender.Text + "', [Salary]='" + txtSalary.Text + "', [HireDate]='" + dtHireDate.Value + "' Where ID='"+ txtID.Text +"'", con);
+            String query = "UPDATE [Employee] SET [FirstName]=@FirstName, [LastName]=@LastName, [Email]=@Email, [Gender]=@Gender, [Salary]=@Salary, [HireDate]=@HireDate Where ID=@ID";
 
-            //cmd.ExecuteNonQuery();
+            using (SqlCommand cmd = new SqlCommand(query, con))
+            {
 
-            //MessageBox.Show("Record updated successfully", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                int selectedrowindex = dgvEmployee.CurrentRow.Index;
+                DataGridViewRow selectedRow = dgvEmployee.Rows[selectedrowindex];
+                string cellValue = Convert.ToString(selectedRow.Cells[0].Value);
+                cmd.Parameters.AddWithValue("@ID", cellValue);
+                cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
+                cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
+                cmd.Parameters.AddWithValue("@email", txtEmail.Text);
+                cmd.Parameters.AddWithValue("@Gender", txtGender.Text);
+                cmd.Parameters.AddWithValue("@HireDate", dtHireDate.Value);
+                cmd.Parameters.AddWithValue("@Salary", sal);
 
-            //loadEmployeeRecords();
+                try
+                {
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Record updated successfully", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    loadEmployeeRecords();
+                    EmptyString();
+                }
+                catch (SqlException err)
+                {
+                    MessageBox.Show($"Error:{err.ToString()}", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                con.Close();
 
-            //EmptyString();
+            }
 
         }
 
@@ -101,16 +120,16 @@ namespace CSharpForm1
             SqlConnection con = new SqlConnection("Data Source=localhost; Database=FirstLoginDB; Integrated Security=true");
             con.Open();
 
+            SqlCommand cmd = new SqlCommand("DELETE FROM [Employee] WHERE ID=@ID", con);
+            int selectedrowindex = dgvEmployee.CurrentRow.Index;
+            DataGridViewRow selectedRow =dgvEmployee.Rows[selectedrowindex];
+            string cellValue = Convert.ToString(selectedRow.Cells[0].Value);
+            cmd.Parameters.AddWithValue("@ID", cellValue);
+            cmd.ExecuteNonQuery();
+            con.Close();
+
             foreach(DataGridViewRow row in dgvEmployee.SelectedRows)
             {
-                SqlCommand cmd = new SqlCommand("DELETE FROM [Employee] WHERE ID=@ID", con);
-                int selectedrowindex = dgvEmployee.CurrentRow.Index;
-                DataGridViewRow selectedRow =dgvEmployee.Rows[selectedrowindex];
-                string cellValue = Convert.ToString(selectedRow.Cells["ID"].Value);
-                cmd.Parameters.AddWithValue("@ID", cellValue);
-                cmd.ExecuteNonQuery();
-                con.Close();
-
                 if(!row.IsNewRow)
                 {
                     dgvEmployee.Rows.Remove(row);
@@ -157,7 +176,29 @@ namespace CSharpForm1
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
+            // TODO: esta linha de código carrega dados na tabela 'firstLoginDBDataSet.Employee'. pode movê-la ou removê-la conforme necessário.
+            this.employeeTableAdapter.Fill(this.firstLoginDBDataSet.Employee);
             loadEmployeeRecords();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void dgvEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                DataGridViewRow dgvRow = dgvEmployee.Rows[e.RowIndex];
+                txtFirstName.Text = dgvRow.Cells[1].Value.ToString();
+                txtLastName.Text = dgvRow.Cells[2].Value.ToString();
+                txtEmail.Text = dgvRow.Cells[3].Value.ToString();
+                txtGender.Text = dgvRow.Cells[4].Value.ToString();
+                dtHireDate.Value = (DateTime)dgvRow.Cells[5].Value;
+                txtSalary.Text = dgvRow.Cells[6].Value.ToString();
+
+            }
         }
     }
 }
