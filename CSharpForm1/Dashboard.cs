@@ -72,6 +72,7 @@ namespace CSharpForm1
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            decimal sal = decimal.Parse(txtSalary.Text);
             //1. SQL connection - connection string
 
             SqlConnection con = new SqlConnection("Data Source=localhost; Database=FirstLoginDB; Integrated Security=true");      
@@ -91,8 +92,8 @@ namespace CSharpForm1
                 cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
                 cmd.Parameters.AddWithValue("@email", txtEmail.Text);
                 cmd.Parameters.AddWithValue("@Gender", txtGender.Text);
-                cmd.Parameters.AddWithValue("@Salary", txtSalary.Text);
                 cmd.Parameters.AddWithValue("@HireDate", dtHireDate.Value);
+                cmd.Parameters.AddWithValue("@Salary", sal);
 
                 try
                 {
@@ -183,6 +184,21 @@ namespace CSharpForm1
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dgvEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                DataGridViewRow dgvRow = dgvEmployee.Rows[e.RowIndex];
+                txtFirstName.Text = dgvRow.Cells[1].Value.ToString();
+                txtLastName.Text = dgvRow.Cells[2].Value.ToString();
+                txtEmail.Text = dgvRow.Cells[3].Value.ToString();
+                txtGender.Text = dgvRow.Cells[4].Value.ToString();
+                dtHireDate.Value = (DateTime)dgvRow.Cells[5].Value;
+                txtSalary.Text = dgvRow.Cells[6].Value.ToString();
+
+            }
         }
     }
 }
