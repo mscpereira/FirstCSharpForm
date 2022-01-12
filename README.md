@@ -1,6 +1,6 @@
 I'm starting with C# as my second language.
 
-Created my first Form connected to a DB.
+Working with my first Form connected to a DB.
 
 For coding I used Visual Studio 2022.
 
