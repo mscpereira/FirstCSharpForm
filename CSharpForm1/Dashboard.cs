@@ -70,6 +70,9 @@ namespace CSharpForm1
                 }
             }
         }
+
+
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             ////1. SQL connection - connection string
@@ -93,24 +96,37 @@ namespace CSharpForm1
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            ////1. SQL connection - connection string
+
+            //DELETING SELECTED ROW IN DATAGRID (NOT DB)
+            SqlConnection con = new SqlConnection("Data Source=localhost; Database=FirstLoginDB; Integrated Security=true");
+            con.Open();
+
+            foreach(DataGridViewRow row in dgvEmployee.SelectedRows)
+            {
+                SqlCommand cmd = new SqlCommand("DELETE FROM [Employee] WHERE ID=@ID", con);
+                int selectedrowindex = dgvEmployee.CurrentRow.Index;
+                DataGridViewRow selectedRow =dgvEmployee.Rows[selectedrowindex];
+                string cellValue = Convert.ToString(selectedRow.Cells["ID"].Value);
+                cmd.Parameters.AddWithValue("@ID", cellValue);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+                if(!row.IsNewRow)
+                {
+                    dgvEmployee.Rows.Remove(row);
+                }
+            }
+        }
+               
+            //DELETING A ROW IN DATAGRID AND DB BY TYPING THE USER ID ON ID INPUT
 
             //SqlConnection con = new SqlConnection("Data Source=localhost; Database=FirstLoginDB; Integrated Security=true");
             //con.Open();
-
-            ////2. SQL command - query to perform transaction
-
-            //SqlCommand cmd = new SqlCommand("DELETE FROM [Employee] WHERE ID='" + txtID.Text + "' ", con);
-
+            //SqlCommand cmd = new SqlCommand("DELETE FROM [Employee] WHERE ID=@ID", con);
             //cmd.ExecuteNonQuery();
-
             //MessageBox.Show("Record deleted successfully", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
             //loadEmployeeRecords();
-
             //EmptyString();
-
-        }
 
         public void loadEmployeeRecords()
         {
