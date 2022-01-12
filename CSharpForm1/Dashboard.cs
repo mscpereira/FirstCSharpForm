@@ -72,23 +72,33 @@ namespace CSharpForm1
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            ////1. SQL connection - connection string
+            //1. SQL connection - connection string
 
-            //SqlConnection con = new SqlConnection("Data Source=localhost; Database=FirstLoginDB; Integrated Security=true");
-            //con.Open();
+            SqlConnection con = new SqlConnection("Data Source=localhost; Database=FirstLoginDB; Integrated Security=true");
+            con.Open();
 
-            ////2. SQL command - query to perform transaction
+            //2. SQL command - query to perform transaction
+            
+                SqlCommand cmd = new SqlCommand("UPDATE [Employee] SET [FirstName]=@FirstName, [LastName]=@LastName, [Email]=@Email, [Gender]=@Gender, [Salary]=@Salary, [HireDate]=@HireDate Where ID=@ID", con);
+                int selectedrowindex = dgvEmployee.CurrentRow.Index;
+                DataGridViewRow selectedRow = dgvEmployee.Rows[selectedrowindex];
+                string cellValue = Convert.ToString(selectedRow.Cells[0].Value);
+                cmd.Parameters.AddWithValue("@ID", cellValue);
+                cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
+                cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
+                cmd.Parameters.AddWithValue("@email", txtEmail.Text);
+                cmd.Parameters.AddWithValue("@Gender", txtGender.Text);
+                cmd.Parameters.AddWithValue("@Salary", txtSalary.Text);
+                cmd.Parameters.AddWithValue("@HireDate", dtHireDate.Value);
 
-            //SqlCommand cmd = new SqlCommand("UPDATE [Employee] SET [FirstName]='"+txtFirstName.Text+ "', [LastName]='" + txtLastName.Text + "', [Email]='" + txtEmail.Text + "', [Gender]='" + txtGender.Text + "', [Salary]='" + txtSalary.Text + "', [HireDate]='" + dtHireDate.Value + "' Where ID='"+ txtID.Text +"'", con);
+                cmd.ExecuteNonQuery();
 
-            //cmd.ExecuteNonQuery();
+                MessageBox.Show("Record updated successfully", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            //MessageBox.Show("Record updated successfully", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                loadEmployeeRecords();
 
-            //loadEmployeeRecords();
-
-            //EmptyString();
-
+                EmptyString();
+           
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -98,16 +108,16 @@ namespace CSharpForm1
             SqlConnection con = new SqlConnection("Data Source=localhost; Database=FirstLoginDB; Integrated Security=true");
             con.Open();
 
+            SqlCommand cmd = new SqlCommand("DELETE FROM [Employee] WHERE ID=@ID", con);
+            int selectedrowindex = dgvEmployee.CurrentRow.Index;
+            DataGridViewRow selectedRow =dgvEmployee.Rows[selectedrowindex];
+            string cellValue = Convert.ToString(selectedRow.Cells[0].Value);
+            cmd.Parameters.AddWithValue("@ID", cellValue);
+            cmd.ExecuteNonQuery();
+            con.Close();
+
             foreach(DataGridViewRow row in dgvEmployee.SelectedRows)
             {
-                SqlCommand cmd = new SqlCommand("DELETE FROM [Employee] WHERE ID=@ID", con);
-                int selectedrowindex = dgvEmployee.CurrentRow.Index;
-                DataGridViewRow selectedRow =dgvEmployee.Rows[selectedrowindex];
-                string cellValue = Convert.ToString(selectedRow.Cells["ID"].Value);
-                cmd.Parameters.AddWithValue("@ID", cellValue);
-                cmd.ExecuteNonQuery();
-                con.Close();
-
                 if(!row.IsNewRow)
                 {
                     dgvEmployee.Rows.Remove(row);
