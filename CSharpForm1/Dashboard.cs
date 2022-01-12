@@ -15,7 +15,7 @@ namespace CSharpForm1
     {
         public Dashboard()
         {
-            InitializeComponent();
+            InitializeComponent();     
         }
 
 
@@ -74,12 +74,15 @@ namespace CSharpForm1
         {
             //1. SQL connection - connection string
 
-            SqlConnection con = new SqlConnection("Data Source=localhost; Database=FirstLoginDB; Integrated Security=true");
-            con.Open();
+            SqlConnection con = new SqlConnection("Data Source=localhost; Database=FirstLoginDB; Integrated Security=true");      
 
             //2. SQL command - query to perform transaction
-            
-                SqlCommand cmd = new SqlCommand("UPDATE [Employee] SET [FirstName]=@FirstName, [LastName]=@LastName, [Email]=@Email, [Gender]=@Gender, [Salary]=@Salary, [HireDate]=@HireDate Where ID=@ID", con);
+
+            String query = "UPDATE [Employee] SET [FirstName]=@FirstName, [LastName]=@LastName, [Email]=@Email, [Gender]=@Gender, [Salary]=@Salary, [HireDate]=@HireDate Where ID=@ID";
+
+            using (SqlCommand cmd = new SqlCommand(query, con))
+            {
+
                 int selectedrowindex = dgvEmployee.CurrentRow.Index;
                 DataGridViewRow selectedRow = dgvEmployee.Rows[selectedrowindex];
                 string cellValue = Convert.ToString(selectedRow.Cells[0].Value);
@@ -91,14 +94,22 @@ namespace CSharpForm1
                 cmd.Parameters.AddWithValue("@Salary", txtSalary.Text);
                 cmd.Parameters.AddWithValue("@HireDate", dtHireDate.Value);
 
-                cmd.ExecuteNonQuery();
+                try
+                {
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Record updated successfully", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    loadEmployeeRecords();
+                    EmptyString();
+                }
+                catch (SqlException err)
+                {
+                    MessageBox.Show($"Error:{err.ToString()}", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                con.Close();
 
-                MessageBox.Show("Record updated successfully", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
-                loadEmployeeRecords();
-
-                EmptyString();
-           
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
