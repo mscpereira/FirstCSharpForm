@@ -18,6 +18,7 @@ namespace CSharpForm1
             InitializeComponent();
         }
 
+
         public void EmptyString()
         {
             txtFirstName.Text = string.Empty;
@@ -27,7 +28,7 @@ namespace CSharpForm1
             txtSalary.Text = string.Empty;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             //Connecting to a DB
             //Things needed:
@@ -64,13 +65,9 @@ namespace CSharpForm1
                 {
                     MessageBox.Show($"Error:{err.ToString()}", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                finally
-                {
-                    con.Close();
-                }
+                con.Close();
             }
         }
-
 
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -157,7 +154,14 @@ namespace CSharpForm1
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
+            // TODO: esta linha de código carrega dados na tabela 'firstLoginDBDataSet.Employee'. pode movê-la ou removê-la conforme necessário.
+            this.employeeTableAdapter.Fill(this.firstLoginDBDataSet.Employee);
             loadEmployeeRecords();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
