@@ -34,7 +34,10 @@ namespace CSharpForm1
 
             //2. SQL command
 
-            SqlCommand cmd = new SqlCommand("Select * from Account Where Username='" + txtUsername.Text + "' and Password='" + txtPassword.Text + "'", con);
+            SqlCommand cmd = new SqlCommand("Select * from Account Where Username=@Username and Password=@Password", con);
+
+            cmd.Parameters.AddWithValue("@Username", txtUsername.Text);
+            cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
 
             //3. SQL datareader
 
