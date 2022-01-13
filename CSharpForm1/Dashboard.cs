@@ -38,8 +38,9 @@ namespace CSharpForm1
 
             //2. SQL command - query
 
+            //SqlCommand cmd = new SqlCommand("INSERT INTO Employee ([FirstName],[LastName],[Email],[Gender],[Salary],[HireDate]) VALUES ('" + txtFirstName.Text + "', '" + txtLastName.Text + "', '" + txtEmail.Text + "', '" + txtGender.Text + "', '" + txtSalary.Text + "', '" + dtHireDate.Value + "')", con);
             String query = "INSERT INTO Employee(FirstName, LastName, Email, Gender, Salary, HireDate) VALUES (@FirstName, @LastName, @Email, @Gender, @Salary, @HireDate)";
-
+          
             using (SqlCommand cmd = new SqlCommand(query, con))
             {
                 cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
@@ -48,14 +49,15 @@ namespace CSharpForm1
                 cmd.Parameters.AddWithValue("@Gender", txtGender.Text);
                 cmd.Parameters.AddWithValue("@Salary", txtSalary.Text);
                 cmd.Parameters.AddWithValue("@HireDate", dtHireDate.Value);
-
-
-                //SqlCommand cmd = new SqlCommand("INSERT INTO Employee ([FirstName],[LastName],[Email],[Gender],[Salary],[HireDate]) VALUES ('" + txtFirstName.Text + "', '" + txtLastName.Text + "', '" + txtEmail.Text + "', '" + txtGender.Text + "', '" + txtSalary.Text + "', '" + dtHireDate.Value + "')", con);
-
                 try
                 {
                     con.Open();
-                    cmd.ExecuteNonQuery();
+                    if (txtFirstName.Text == String.Empty || txtFirstName.Text == null)
+                    {
+                        MessageBox.Show("Field can't be blank!", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    cmd.ExecuteNonQuery();                    
                     MessageBox.Show("Record saved successfully", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadEmployeeRecords();
                     EmptyString();
