@@ -30,16 +30,16 @@ namespace CSharpForm1
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //Connecting to a DB
-            //Things needed:
+            decimal sal = decimal.Parse(txtSalary.Text);
+
             //1. SQL connection - connection string
 
             SqlConnection con = new SqlConnection("Data Source=localhost; Database=FirstLoginDB; Integrated Security=true");
 
             //2. SQL command - query
 
-            //SqlCommand cmd = new SqlCommand("INSERT INTO Employee ([FirstName],[LastName],[Email],[Gender],[Salary],[HireDate]) VALUES ('" + txtFirstName.Text + "', '" + txtLastName.Text + "', '" + txtEmail.Text + "', '" + txtGender.Text + "', '" + txtSalary.Text + "', '" + dtHireDate.Value + "')", con);
             String query = "INSERT INTO Employee(FirstName, LastName, Email, Gender, Salary, HireDate) VALUES (@FirstName, @LastName, @Email, @Gender, @Salary, @HireDate)";
+            //SqlCommand cmd = new SqlCommand("INSERT INTO Employee ([FirstName],[LastName],[Email],[Gender],[Salary],[HireDate]) VALUES ('" + txtFirstName.Text + "', '" + txtLastName.Text + "', '" + txtEmail.Text + "', '" + txtGender.Text + "', '" + txtSalary.Text + "', '" + dtHireDate.Value + "')", con);
           
             using (SqlCommand cmd = new SqlCommand(query, con))
             {
@@ -62,7 +62,6 @@ namespace CSharpForm1
                     loadEmployeeRecords();
                     EmptyString();
                 }
-
                 catch (SqlException err)
                 {
                     MessageBox.Show($"Error:{err.ToString()}", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -201,6 +200,16 @@ namespace CSharpForm1
                 txtSalary.Text = dgvRow.Cells[6].Value.ToString();
 
             }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+                txtFirstName.Text = string.Empty;
+                txtLastName.Text = string.Empty;
+                txtEmail.Text = string.Empty;
+                txtGender.Text = string.Empty;
+                dtHireDate.Value = DateTime.Now;
+                txtSalary.Text = string.Empty;
         }
     }
 }
