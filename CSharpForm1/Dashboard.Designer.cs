@@ -31,16 +31,16 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.titleFirstName = new System.Windows.Forms.Label();
             this.txtFirstName = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.titleLastName = new System.Windows.Forms.Label();
             this.txtLastName = new System.Windows.Forms.TextBox();
             this.txtSalary = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.titleSalary = new System.Windows.Forms.Label();
+            this.titleHireDate = new System.Windows.Forms.Label();
+            this.titleGender = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.titleEmail = new System.Windows.Forms.Label();
             this.txtGender = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -60,6 +60,11 @@
             this.employeeTableAdapter = new CSharpForm1.FirstLoginDBDataSetTableAdapters.EmployeeTableAdapter();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+            this.invalidFirstName = new System.Windows.Forms.Label();
+            this.invalidLastName = new System.Windows.Forms.Label();
+            this.invalidEmail = new System.Windows.Forms.Label();
+            this.invalidGender = new System.Windows.Forms.Label();
+            this.invalidSalary = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
@@ -89,15 +94,15 @@
             this.textBox1.Text = "EMPLOYEE INFORMATION";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label2
+            // titleFirstName
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label2.Location = new System.Drawing.Point(40, 122);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 17);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "First Name";
+            this.titleFirstName.AutoSize = true;
+            this.titleFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.titleFirstName.Location = new System.Drawing.Point(40, 122);
+            this.titleFirstName.Name = "titleFirstName";
+            this.titleFirstName.Size = new System.Drawing.Size(76, 17);
+            this.titleFirstName.TabIndex = 1;
+            this.titleFirstName.Text = "First Name";
             // 
             // txtFirstName
             // 
@@ -106,15 +111,15 @@
             this.txtFirstName.Size = new System.Drawing.Size(417, 20);
             this.txtFirstName.TabIndex = 1;
             // 
-            // label3
+            // titleLastName
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label3.Location = new System.Drawing.Point(40, 164);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 17);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Last Name";
+            this.titleLastName.AutoSize = true;
+            this.titleLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.titleLastName.Location = new System.Drawing.Point(40, 164);
+            this.titleLastName.Name = "titleLastName";
+            this.titleLastName.Size = new System.Drawing.Size(76, 17);
+            this.titleLastName.TabIndex = 1;
+            this.titleLastName.Text = "Last Name";
             // 
             // txtLastName
             // 
@@ -130,35 +135,35 @@
             this.txtSalary.Size = new System.Drawing.Size(417, 20);
             this.txtSalary.TabIndex = 6;
             // 
-            // label4
+            // titleSalary
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label4.Location = new System.Drawing.Point(623, 204);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(48, 17);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Salary";
+            this.titleSalary.AutoSize = true;
+            this.titleSalary.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.titleSalary.Location = new System.Drawing.Point(623, 204);
+            this.titleSalary.Name = "titleSalary";
+            this.titleSalary.Size = new System.Drawing.Size(48, 17);
+            this.titleSalary.TabIndex = 3;
+            this.titleSalary.Text = "Salary";
             // 
-            // label5
+            // titleHireDate
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label5.Location = new System.Drawing.Point(605, 167);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 17);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Hire Date";
+            this.titleHireDate.AutoSize = true;
+            this.titleHireDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.titleHireDate.Location = new System.Drawing.Point(605, 167);
+            this.titleHireDate.Name = "titleHireDate";
+            this.titleHireDate.Size = new System.Drawing.Size(68, 17);
+            this.titleHireDate.TabIndex = 4;
+            this.titleHireDate.Text = "Hire Date";
             // 
-            // label6
+            // titleGender
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label6.Location = new System.Drawing.Point(615, 122);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 17);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Gender";
+            this.titleGender.AutoSize = true;
+            this.titleGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.titleGender.Location = new System.Drawing.Point(615, 122);
+            this.titleGender.Name = "titleGender";
+            this.titleGender.Size = new System.Drawing.Size(56, 17);
+            this.titleGender.TabIndex = 5;
+            this.titleGender.Text = "Gender";
             // 
             // txtEmail
             // 
@@ -167,15 +172,15 @@
             this.txtEmail.Size = new System.Drawing.Size(417, 20);
             this.txtEmail.TabIndex = 3;
             // 
-            // label7
+            // titleEmail
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label7.Location = new System.Drawing.Point(74, 203);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(42, 17);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "Email";
+            this.titleEmail.AutoSize = true;
+            this.titleEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.titleEmail.Location = new System.Drawing.Point(74, 203);
+            this.titleEmail.Name = "titleEmail";
+            this.titleEmail.Size = new System.Drawing.Size(42, 17);
+            this.titleEmail.TabIndex = 9;
+            this.titleEmail.Text = "Email";
             // 
             // txtGender
             // 
@@ -340,7 +345,7 @@
             this.btnClear.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnClear.Location = new System.Drawing.Point(43, 239);
+            this.btnClear.Location = new System.Drawing.Point(43, 255);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(127, 29);
             this.btnClear.TabIndex = 7;
@@ -348,12 +353,65 @@
             this.btnClear.UseVisualStyleBackColor = false;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // invalidFirstName
+            // 
+            this.invalidFirstName.AutoSize = true;
+            this.invalidFirstName.Enabled = false;
+            this.invalidFirstName.Location = new System.Drawing.Point(138, 144);
+            this.invalidFirstName.Name = "invalidFirstName";
+            this.invalidFirstName.Size = new System.Drawing.Size(0, 13);
+            this.invalidFirstName.TabIndex = 12;
+            this.invalidFirstName.Tag = "";
+            // 
+            // invalidLastName
+            // 
+            this.invalidLastName.AutoSize = true;
+            this.invalidLastName.Enabled = false;
+            this.invalidLastName.Location = new System.Drawing.Point(138, 187);
+            this.invalidLastName.Name = "invalidLastName";
+            this.invalidLastName.Size = new System.Drawing.Size(0, 13);
+            this.invalidLastName.TabIndex = 13;
+            // 
+            // invalidEmail
+            // 
+            this.invalidEmail.AutoSize = true;
+            this.invalidEmail.Enabled = false;
+            this.invalidEmail.Location = new System.Drawing.Point(135, 226);
+            this.invalidEmail.Name = "invalidEmail";
+            this.invalidEmail.Size = new System.Drawing.Size(0, 13);
+            this.invalidEmail.TabIndex = 14;
+            // 
+            // invalidGender
+            // 
+            this.invalidGender.AutoSize = true;
+            this.invalidGender.Enabled = false;
+            this.invalidGender.Location = new System.Drawing.Point(703, 145);
+            this.invalidGender.Name = "invalidGender";
+            this.invalidGender.Size = new System.Drawing.Size(0, 13);
+            this.invalidGender.TabIndex = 15;
+            this.invalidGender.Tag = "";
+            // 
+            // invalidSalary
+            // 
+            this.invalidSalary.AutoSize = true;
+            this.invalidSalary.Enabled = false;
+            this.invalidSalary.Location = new System.Drawing.Point(703, 226);
+            this.invalidSalary.Name = "invalidSalary";
+            this.invalidSalary.Size = new System.Drawing.Size(0, 13);
+            this.invalidSalary.TabIndex = 17;
+            this.invalidSalary.Tag = "";
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1223, 786);
+            this.Controls.Add(this.invalidSalary);
+            this.Controls.Add(this.invalidGender);
+            this.Controls.Add(this.invalidEmail);
+            this.Controls.Add(this.invalidLastName);
+            this.Controls.Add(this.invalidFirstName);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.dtHireDate);
             this.Controls.Add(this.dgvEmployee);
@@ -363,15 +421,15 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtGender);
             this.Controls.Add(this.txtEmail);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.titleEmail);
             this.Controls.Add(this.txtSalary);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.titleSalary);
+            this.Controls.Add(this.titleHireDate);
+            this.Controls.Add(this.titleGender);
             this.Controls.Add(this.txtLastName);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.titleLastName);
             this.Controls.Add(this.txtFirstName);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.titleFirstName);
             this.Controls.Add(this.panel1);
             this.Name = "Dashboard";
             this.Text = "Dashboard";
@@ -391,16 +449,16 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label titleFirstName;
         private System.Windows.Forms.TextBox txtFirstName;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label titleLastName;
         private System.Windows.Forms.TextBox txtLastName;
         private System.Windows.Forms.TextBox txtSalary;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label titleSalary;
+        private System.Windows.Forms.Label titleHireDate;
+        private System.Windows.Forms.Label titleGender;
         private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label titleEmail;
         private System.Windows.Forms.ComboBox txtGender;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnUpdate;
@@ -420,5 +478,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn hireDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn salaryDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Label invalidFirstName;
+        private System.Windows.Forms.Label invalidLastName;
+        private System.Windows.Forms.Label invalidEmail;
+        private System.Windows.Forms.Label invalidGender;
+        private System.Windows.Forms.Label invalidSalary;
     }
 }

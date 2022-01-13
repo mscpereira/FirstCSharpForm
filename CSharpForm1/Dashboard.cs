@@ -18,7 +18,6 @@ namespace CSharpForm1
             InitializeComponent();     
         }
 
-
         public void EmptyString()
         {
             txtFirstName.Text = string.Empty;
@@ -30,8 +29,7 @@ namespace CSharpForm1
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            decimal sal = decimal.Parse(txtSalary.Text);
-
+            
             //1. SQL connection - connection string
 
             SqlConnection con = new SqlConnection("Data Source=localhost; Database=FirstLoginDB; Integrated Security=true");
@@ -39,7 +37,6 @@ namespace CSharpForm1
             //2. SQL command - query
 
             String query = "INSERT INTO Employee(FirstName, LastName, Email, Gender, Salary, HireDate) VALUES (@FirstName, @LastName, @Email, @Gender, @Salary, @HireDate)";
-            //SqlCommand cmd = new SqlCommand("INSERT INTO Employee ([FirstName],[LastName],[Email],[Gender],[Salary],[HireDate]) VALUES ('" + txtFirstName.Text + "', '" + txtLastName.Text + "', '" + txtEmail.Text + "', '" + txtGender.Text + "', '" + txtSalary.Text + "', '" + dtHireDate.Value + "')", con);
           
             using (SqlCommand cmd = new SqlCommand(query, con))
             {
@@ -49,14 +46,114 @@ namespace CSharpForm1
                 cmd.Parameters.AddWithValue("@Gender", txtGender.Text);
                 cmd.Parameters.AddWithValue("@Salary", txtSalary.Text);
                 cmd.Parameters.AddWithValue("@HireDate", dtHireDate.Value);
+
+
+                //Validations in a very bad way
+                if (string.IsNullOrEmpty(txtFirstName.Text.ToString()))
+                {
+                    invalidFirstName.Enabled = true;
+                    invalidFirstName.ForeColor = Color.Red;
+                    invalidFirstName.Text = "Can't be blank";
+                    return;
+                }
+                
+                invalidFirstName.Enabled = false;
+                invalidFirstName.Text = String.Empty;
+
+                if (string.IsNullOrEmpty(txtLastName.Text.ToString()))
+                {
+                    invalidLastName.Enabled = true;
+                    invalidLastName.ForeColor = Color.Red;
+                    invalidLastName.Text = "Can't be blank";
+                    return;
+                }
+
+                invalidLastName.Enabled = false;
+                invalidLastName.Text = String.Empty;
+
+                if (string.IsNullOrEmpty(txtEmail.Text.ToString()))
+                {
+                    invalidEmail.Enabled = true;
+                    invalidEmail.ForeColor = Color.Red;
+                    invalidEmail.Text = "Can't be blank";
+                    return;
+                }
+
+                invalidEmail.Enabled = false;
+                invalidEmail.Text = String.Empty;
+
+                if (string.IsNullOrEmpty(txtGender.Text.ToString()))
+                {
+                    invalidGender.Enabled = true;
+                    invalidGender.ForeColor = Color.Red;
+                    invalidGender.Text = "Can't be blank";
+                    return;
+                }
+
+                invalidGender.Enabled = false;
+                invalidGender.Text = String.Empty;
+
+                decimal dec = 2M;
+                if(Decimal.TryParse(txtSalary.Text, out dec) == false)
+                {
+                    invalidSalary.Enabled = true;
+                    invalidSalary.ForeColor = Color.Red;
+                    invalidSalary.Text = "Must be a number!";
+                    return;
+                }
+
+                invalidSalary.Enabled = false;
+                invalidSalary.Text = String.Empty;
                 try
                 {
+
+                //Validations in another very bad way
+                    //if(true)
+                    //    {
+                    //    if (txtFirstName.Text == String.Empty || txtFirstName.Text == null)
+                    //    {
+                    //        MessageBox.Show($"{titleFirstName.Text} can't be blank!", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //        return;
+                    //    }
+
+                    //    //LastName Field
+                    //    if (txtLastName.Text == String.Empty || txtLastName.Text == null)
+                    //    {
+                    //        MessageBox.Show($"{titleLastName.Text} can't be blank!", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //        return;
+                    //    }
+                   
+                    //    //Email Field
+                    //    if (txtEmail.Text == String.Empty || txtEmail.Text == null)
+                    //    {
+                    //        MessageBox.Show($"{titleEmail.Text} can't be blank!", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //        return;
+                    //    }
+
+                    //    //Genre Field
+                    //    if (txtGender.Text == String.Empty || txtGender.Text == null)
+                    //    {
+                    //        MessageBox.Show($"{titleGender.Text} can't be blank!", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //        return;
+                    //    } 
+
+                    //    //DateView Field
+                    //    //if (dtHireDate.Value == 0 || )
+                    //    //{
+                    //    //    MessageBox.Show("Field can't be blank!", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //    //    return;
+                    //    //}
+
+                    //    //Salary Field
+                    //    if (txtSalary.Text == String.Empty || txtFirstName.Text == null)
+                    //    {
+                    //        MessageBox.Show($"{titleSalary.Text} can't be blank!", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //        return;
+                    //    }
+
+                    //    }
+
                     con.Open();
-                    if (txtFirstName.Text == String.Empty || txtFirstName.Text == null)
-                    {
-                        MessageBox.Show("Field can't be blank!", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
                     cmd.ExecuteNonQuery();                    
                     MessageBox.Show("Record saved successfully", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadEmployeeRecords();
