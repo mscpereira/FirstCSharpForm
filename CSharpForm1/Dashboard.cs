@@ -393,21 +393,5 @@ namespace CSharpForm1
                 dtHireDate.Value = DateTime.Now;
                 txtSalary.Text = string.Empty;
         }
-
-        private void txtEmail_Validating(object sender, CancelEventArgs e)
-        {
-            System.Text.RegularExpressions.Regex rEmail = new System.Text.RegularExpressions.Regex(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
-
-                if (!rEmail.IsMatch(txtEmail.Text.ToString()))
-                {
-                    invalidEmail.Text = "Enter a valid email";
-                    invalidEmail.ForeColor = Color.Red;
-                    invalidEmail.Enabled = true;
-                    txtEmail.SelectAll();
-                    e.Cancel = true;
-                }
-            //invalidEmail.Enabled = false;
-            //invalidEmail.Text = String.Empty;
-        }
     }
 }

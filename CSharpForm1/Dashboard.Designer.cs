@@ -65,11 +65,13 @@
             this.invalidEmail = new System.Windows.Forms.Label();
             this.invalidGender = new System.Windows.Forms.Label();
             this.invalidSalary = new System.Windows.Forms.Label();
+            this.firstLoginDBDataSet1 = new CSharpForm1.FirstLoginDBDataSet();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.firstLoginDBDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.firstLoginDBDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.firstLoginDBDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -171,7 +173,6 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(417, 20);
             this.txtEmail.TabIndex = 3;
-            this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
             // 
             // titleEmail
             // 
@@ -185,6 +186,7 @@
             // 
             // txtGender
             // 
+            this.txtGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtGender.FormattingEnabled = true;
             this.txtGender.Items.AddRange(new object[] {
             "Male",
@@ -402,6 +404,11 @@
             this.invalidSalary.TabIndex = 17;
             this.invalidSalary.Tag = "";
             // 
+            // firstLoginDBDataSet1
+            // 
+            this.firstLoginDBDataSet1.DataSetName = "FirstLoginDBDataSet";
+            this.firstLoginDBDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -434,6 +441,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "Dashboard";
             this.Text = "Dashboard";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Dashboard_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -441,6 +449,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.firstLoginDBDataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.firstLoginDBDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.firstLoginDBDataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -484,5 +493,6 @@
         private System.Windows.Forms.Label invalidEmail;
         private System.Windows.Forms.Label invalidGender;
         private System.Windows.Forms.Label invalidSalary;
+        private FirstLoginDBDataSet firstLoginDBDataSet1;
     }
 }
