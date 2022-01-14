@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -23,7 +24,7 @@ namespace CSharpForm1
             txtFirstName.Text = string.Empty;
             txtLastName.Text = string.Empty;
             txtEmail.Text = string.Empty;
-            txtGender.Text = string.Empty;
+            txtGender.Text = default;
             txtSalary.Text = string.Empty;
         }
 
@@ -49,33 +50,35 @@ namespace CSharpForm1
 
 
                 //Validations in a very bad way
-                if (string.IsNullOrEmpty(txtFirstName.Text.ToString()))
+                System.Text.RegularExpressions.Regex rName = new System.Text.RegularExpressions.Regex(@"^(\p{L}\p{M}*)+$");
+                if (string.IsNullOrEmpty(txtFirstName.Text.ToString()) || (!rName.IsMatch(txtFirstName.Text.ToString())))
                 {
                     invalidFirstName.Enabled = true;
                     invalidFirstName.ForeColor = Color.Red;
-                    invalidFirstName.Text = "Can't be blank";
+                    invalidFirstName.Text = "Please enter a valid name";
                     return;
                 }
                 
                 invalidFirstName.Enabled = false;
                 invalidFirstName.Text = String.Empty;
 
-                if (string.IsNullOrEmpty(txtLastName.Text.ToString()))
+                if (string.IsNullOrEmpty(txtLastName.Text.ToString()) || (!rName.IsMatch(txtLastName.Text.ToString())))
                 {
                     invalidLastName.Enabled = true;
                     invalidLastName.ForeColor = Color.Red;
-                    invalidLastName.Text = "Can't be blank";
+                    invalidLastName.Text = "Please enter a valid name";
                     return;
                 }
 
                 invalidLastName.Enabled = false;
                 invalidLastName.Text = String.Empty;
 
-                if (string.IsNullOrEmpty(txtEmail.Text.ToString()))
+                System.Text.RegularExpressions.Regex rEmail = new System.Text.RegularExpressions.Regex(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
+                if (string.IsNullOrEmpty(txtEmail.Text.ToString()) || (!rEmail.IsMatch(txtEmail.Text.ToString())))
                 {
                     invalidEmail.Enabled = true;
                     invalidEmail.ForeColor = Color.Red;
-                    invalidEmail.Text = "Can't be blank";
+                    invalidEmail.Text = "Please enter a valid email";
                     return;
                 }
 
@@ -90,25 +93,21 @@ namespace CSharpForm1
                     return;
                 }
 
+     
                 invalidGender.Enabled = false;
                 invalidGender.Text = String.Empty;
 
-                decimal dec = 2M;
-                if (txtSalary.Text == String.Empty || txtFirstName.Text == null)
+
+                System.Text.RegularExpressions.Regex rSalary = new System.Text.RegularExpressions.Regex(@"^[0-9]{1,8}([,.][0-9]{1,2})?$");
+                if (string.IsNullOrEmpty(txtSalary.Text.ToString()) || (!rSalary.IsMatch(txtSalary.Text.ToString())))
                 {
-                    
+                   
                     invalidSalary.Enabled = true;
                     invalidSalary.ForeColor = Color.Red;
-                    invalidSalary.Text = "Can't be Blank!";
+                    invalidSalary.Text = "Enter a valid number with 2 decimals max - Ex.: 1500.35";
                     return;
                 }
-                else if (Decimal.TryParse(txtSalary.Text, out dec) == false)
-                {
-                    invalidSalary.Enabled = true;
-                    invalidSalary.ForeColor = Color.Red;
-                    invalidSalary.Text = "Must be a number!";
-                    return;
-                }
+                else
 
                 invalidSalary.Enabled = false;
                 invalidSalary.Text = String.Empty;
@@ -166,6 +165,7 @@ namespace CSharpForm1
                     cmd.ExecuteNonQuery();                    
                     MessageBox.Show("Record saved successfully", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadEmployeeRecords();
+                    btnUpdate.Enabled = true;
                     EmptyString();
                 }
                 catch (SqlException err)
@@ -179,119 +179,123 @@ namespace CSharpForm1
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-      
-            //1. SQL connection - connection string
-
-            SqlConnection con = new SqlConnection("Data Source=localhost; Database=FirstLoginDB; Integrated Security=true");      
-
-            //2. SQL command - query to perform transaction
-
-            String query = "UPDATE [Employee] SET [FirstName]=@FirstName, [LastName]=@LastName, [Email]=@Email, [Gender]=@Gender, [Salary]=@Salary, [HireDate]=@HireDate Where ID=@ID";
-
-            using (SqlCommand cmd = new SqlCommand(query, con))
+            if (dgvEmployee.Rows.Count > 0)
             {
+                btnUpdate.Enabled = true;
+                //1. SQL connection - connection string
 
-                int selectedrowindex = dgvEmployee.CurrentRow.Index;
-                DataGridViewRow selectedRow = dgvEmployee.Rows[selectedrowindex];
-                string cellValue = Convert.ToString(selectedRow.Cells[0].Value);
-                cmd.Parameters.AddWithValue("@ID", cellValue);
-                cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
-                cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
-                cmd.Parameters.AddWithValue("@email", txtEmail.Text);
-                cmd.Parameters.AddWithValue("@Gender", txtGender.Text);
-                cmd.Parameters.AddWithValue("@HireDate", dtHireDate.Value);
-                if (txtSalary.Text == "")
+                SqlConnection con = new SqlConnection("Data Source=localhost; Database=FirstLoginDB; Integrated Security=true");      
+
+                //2. SQL command - query to perform transaction
+
+                String query = "UPDATE [Employee] SET [FirstName]=@FirstName, [LastName]=@LastName, [Email]=@Email, [Gender]=@Gender, [Salary]=@Salary, [HireDate]=@HireDate Where ID=@ID";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
                 {
-                    cmd.Parameters.AddWithValue("@Salary", txtSalary.Text);
+
+                    int selectedrowindex = dgvEmployee.CurrentRow.Index;
+                    DataGridViewRow selectedRow = dgvEmployee.Rows[selectedrowindex];
+                    string cellValue = Convert.ToString(selectedRow.Cells[0].Value);
+                    cmd.Parameters.AddWithValue("@ID", cellValue);
+                    cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
+                    cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
+                    cmd.Parameters.AddWithValue("@email", txtEmail.Text);
+                    cmd.Parameters.AddWithValue("@Gender", txtGender.Text);
+                    cmd.Parameters.AddWithValue("@HireDate", dtHireDate.Value);
+                    if (txtSalary.Text == "")
+                    {
+                        cmd.Parameters.AddWithValue("@Salary", txtSalary.Text);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@Salary", System.Convert.ToDecimal(txtSalary.Text));
+                    }
+
+                    //Validations in a very bad way
+                    System.Text.RegularExpressions.Regex rName = new System.Text.RegularExpressions.Regex(@"^(\p{L}\p{M}*)+$");
+                    if (string.IsNullOrEmpty(txtFirstName.Text.ToString()) || (!rName.IsMatch(txtFirstName.Text.ToString())))
+                    {
+                        invalidFirstName.Enabled = true;
+                        invalidFirstName.ForeColor = Color.Red;
+                        invalidFirstName.Text = "Please enter a valid name";
+                        return;
+                    }
+
+                    invalidFirstName.Enabled = false;
+                    invalidFirstName.Text = String.Empty;
+
+                    if (string.IsNullOrEmpty(txtLastName.Text.ToString()) || (!rName.IsMatch(txtLastName.Text.ToString())))
+                    {
+                        invalidLastName.Enabled = true;
+                        invalidLastName.ForeColor = Color.Red;
+                        invalidLastName.Text = "Please enter a valid name";
+                        return;
+                    }
+
+                    invalidLastName.Enabled = false;
+                    invalidLastName.Text = String.Empty;
+
+
+                    System.Text.RegularExpressions.Regex rEmail = new System.Text.RegularExpressions.Regex(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
+                    if (string.IsNullOrEmpty(txtEmail.Text.ToString()) || (!rEmail.IsMatch(txtEmail.Text.ToString())))
+                    {
+                        invalidEmail.Enabled = true;
+                        invalidEmail.ForeColor = Color.Red;
+                        invalidEmail.Text = "Please enter a valid email";
+                        return;
+                    }
+
+                    invalidEmail.Enabled = false;
+                    invalidEmail.Text = String.Empty;
+
+                    if (string.IsNullOrEmpty(txtGender.Text.ToString()))
+                    {
+                        invalidGender.Enabled = true;
+                        invalidGender.ForeColor = Color.Red;
+                        invalidGender.Text = "Can't be blank";
+                        return;
+                    }
+
+                    invalidGender.Enabled = false;
+                    invalidGender.Text = String.Empty;
+
+
+                    System.Text.RegularExpressions.Regex rSalary = new System.Text.RegularExpressions.Regex(@"^[0-9]{1,8}([,.][0-9]{1,2})?$");
+                    if (string.IsNullOrEmpty(txtSalary.Text.ToString()) || (!rSalary.IsMatch(txtSalary.Text.ToString())))
+                    {
+
+                        invalidSalary.Enabled = true;
+                        invalidSalary.ForeColor = Color.Red;
+                        invalidSalary.Text = "Enter a valid number with 2 decimals max - Ex.: 1500.35";
+                        return;
+                    }
+                    else
+
+                    invalidSalary.Enabled = false;
+                    invalidSalary.Text = String.Empty;
+
+
+                    try
+                    {
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Record updated successfully", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        loadEmployeeRecords();
+                        EmptyString();
+                    }
+                    catch (SqlException err)
+                    {
+                        MessageBox.Show($"Error:{err.ToString()}", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    con.Close();
+
                 }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@Salary", System.Convert.ToDecimal(txtSalary.Text));
-                }
 
-                //Validations in a very bad way
-                if (string.IsNullOrEmpty(txtFirstName.Text.ToString()))
-                {
-                    invalidFirstName.Enabled = true;
-                    invalidFirstName.ForeColor = Color.Red;
-                    invalidFirstName.Text = "Can't be blank";
-                    return;
-                }
-
-                invalidFirstName.Enabled = false;
-                invalidFirstName.Text = String.Empty;
-
-                if (string.IsNullOrEmpty(txtLastName.Text.ToString()))
-                {
-                    invalidLastName.Enabled = true;
-                    invalidLastName.ForeColor = Color.Red;
-                    invalidLastName.Text = "Can't be blank";
-                    return;
-                }
-
-                invalidLastName.Enabled = false;
-                invalidLastName.Text = String.Empty;
-
-
-                System.Text.RegularExpressions.Regex rEmail = new System.Text.RegularExpressions.Regex(@"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
-                if (string.IsNullOrEmpty(txtEmail.Text.ToString()) || (!rEmail.IsMatch(txtEmail.Text.ToString())))
-                {
-                    invalidEmail.Enabled = true;
-                    invalidEmail.ForeColor = Color.Red;
-                    invalidEmail.Text = "Please enter a valid email";
-                    return;
-                }
-
-                invalidEmail.Enabled = false;
-                invalidEmail.Text = String.Empty;
-
-                if (string.IsNullOrEmpty(txtGender.Text.ToString()))
-                {
-                    invalidGender.Enabled = true;
-                    invalidGender.ForeColor = Color.Red;
-                    invalidGender.Text = "Can't be blank";
-                    return;
-                }
-
-                invalidGender.Enabled = false;
-                invalidGender.Text = String.Empty;
-
-
-                decimal dec = 2M;
-                if (txtSalary.Text == String.Empty || txtSalary.Text == null)
-                {
-                    invalidSalary.Enabled = true;
-                    invalidSalary.ForeColor = Color.Red;
-                    invalidSalary.Text = "Can't be Blank!";
-                    return;
-                }
-                else if (Decimal.TryParse(txtSalary.Text, out dec) == false)
-                {
-                    invalidSalary.Enabled = true;
-                    invalidSalary.ForeColor = Color.Red;
-                    invalidSalary.Text = "Must be a number!";
-                    return;
-                }
-
-                invalidSalary.Enabled = false;
-                invalidSalary.Text = String.Empty;
-
-
-
-                try
-                {
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Record updated successfully", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    loadEmployeeRecords();
-                    EmptyString();
-                }
-                catch (SqlException err)
-                {
-                    MessageBox.Show($"Error:{err.ToString()}", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                con.Close();
-
+            }
+            else
+            {
+                btnUpdate.Enabled = false;
+                MessageBox.Show("Save a record first!", "Message Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -305,18 +309,24 @@ namespace CSharpForm1
 
             SqlCommand cmd = new SqlCommand("DELETE FROM [Employee] WHERE ID=@ID", con);
             int selectedrowindex = dgvEmployee.CurrentRow.Index;
-            DataGridViewRow selectedRow =dgvEmployee.Rows[selectedrowindex];
+            DataGridViewRow selectedRow = dgvEmployee.Rows[selectedrowindex];
             string cellValue = Convert.ToString(selectedRow.Cells[0].Value);
             cmd.Parameters.AddWithValue("@ID", cellValue);
             cmd.ExecuteNonQuery();
+            EmptyString();
             con.Close();
 
-            foreach(DataGridViewRow row in dgvEmployee.SelectedRows)
+            foreach (DataGridViewRow row in dgvEmployee.SelectedRows)
             {
-                if(!row.IsNewRow)
+                if (!row.IsNewRow)
                 {
                     dgvEmployee.Rows.Remove(row);
                 }
+            }
+            if (dgvEmployee.Rows.Count > 0)
+            {
+                int nRowIndex = dgvEmployee.Rows.Count - 1;        
+                dgvEmployee.Rows[nRowIndex].Selected = true;
             }
         }
                

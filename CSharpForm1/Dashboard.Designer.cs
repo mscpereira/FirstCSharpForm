@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.titleFirstName = new System.Windows.Forms.Label();
@@ -76,21 +79,21 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlText;
+            this.panel1.BackColor = System.Drawing.Color.BurlyWood;
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Location = new System.Drawing.Point(-4, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1190, 58);
+            this.panel1.Size = new System.Drawing.Size(1929, 76);
             this.panel1.TabIndex = 0;
             // 
             // textBox1
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.InfoText;
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-            this.textBox1.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox1.Location = new System.Drawing.Point(460, 11);
+            this.textBox1.BackColor = System.Drawing.Color.OldLace;
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold);
+            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBox1.Location = new System.Drawing.Point(767, 11);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(310, 36);
+            this.textBox1.Size = new System.Drawing.Size(424, 43);
             this.textBox1.TabIndex = 12;
             this.textBox1.TabStop = false;
             this.textBox1.Text = "EMPLOYEE INFORMATION";
@@ -99,112 +102,141 @@
             // titleFirstName
             // 
             this.titleFirstName.AutoSize = true;
-            this.titleFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.titleFirstName.Location = new System.Drawing.Point(40, 122);
+            this.titleFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.titleFirstName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.titleFirstName.Location = new System.Drawing.Point(128, 137);
             this.titleFirstName.Name = "titleFirstName";
-            this.titleFirstName.Size = new System.Drawing.Size(76, 17);
+            this.titleFirstName.Size = new System.Drawing.Size(101, 24);
             this.titleFirstName.TabIndex = 1;
             this.titleFirstName.Text = "First Name";
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(131, 121);
+            this.txtFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtFirstName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtFirstName.Location = new System.Drawing.Point(259, 134);
+            this.txtFirstName.MaximumSize = new System.Drawing.Size(607, 32);
+            this.txtFirstName.MinimumSize = new System.Drawing.Size(607, 32);
             this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(417, 20);
+            this.txtFirstName.Size = new System.Drawing.Size(607, 26);
             this.txtFirstName.TabIndex = 1;
             // 
             // titleLastName
             // 
             this.titleLastName.AutoSize = true;
-            this.titleLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.titleLastName.Location = new System.Drawing.Point(40, 164);
+            this.titleLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.titleLastName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.titleLastName.Location = new System.Drawing.Point(130, 192);
             this.titleLastName.Name = "titleLastName";
-            this.titleLastName.Size = new System.Drawing.Size(76, 17);
+            this.titleLastName.Size = new System.Drawing.Size(99, 24);
             this.titleLastName.TabIndex = 1;
             this.titleLastName.Text = "Last Name";
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(131, 163);
+            this.txtLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtLastName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtLastName.Location = new System.Drawing.Point(259, 189);
+            this.txtLastName.MaximumSize = new System.Drawing.Size(607, 32);
+            this.txtLastName.MinimumSize = new System.Drawing.Size(607, 32);
             this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(417, 20);
+            this.txtLastName.Size = new System.Drawing.Size(607, 26);
             this.txtLastName.TabIndex = 2;
             // 
             // txtSalary
             // 
-            this.txtSalary.Location = new System.Drawing.Point(697, 203);
+            this.txtSalary.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtSalary.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtSalary.Location = new System.Drawing.Point(1126, 240);
+            this.txtSalary.MaximumSize = new System.Drawing.Size(607, 32);
+            this.txtSalary.MinimumSize = new System.Drawing.Size(607, 32);
             this.txtSalary.Name = "txtSalary";
-            this.txtSalary.Size = new System.Drawing.Size(417, 20);
+            this.txtSalary.Size = new System.Drawing.Size(607, 26);
             this.txtSalary.TabIndex = 6;
             // 
             // titleSalary
             // 
             this.titleSalary.AutoSize = true;
-            this.titleSalary.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.titleSalary.Location = new System.Drawing.Point(623, 204);
+            this.titleSalary.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.titleSalary.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.titleSalary.Location = new System.Drawing.Point(1033, 240);
             this.titleSalary.Name = "titleSalary";
-            this.titleSalary.Size = new System.Drawing.Size(48, 17);
+            this.titleSalary.Size = new System.Drawing.Size(61, 24);
             this.titleSalary.TabIndex = 3;
             this.titleSalary.Text = "Salary";
             // 
             // titleHireDate
             // 
             this.titleHireDate.AutoSize = true;
-            this.titleHireDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.titleHireDate.Location = new System.Drawing.Point(605, 167);
+            this.titleHireDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.titleHireDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.titleHireDate.Location = new System.Drawing.Point(1006, 192);
             this.titleHireDate.Name = "titleHireDate";
-            this.titleHireDate.Size = new System.Drawing.Size(68, 17);
+            this.titleHireDate.Size = new System.Drawing.Size(88, 24);
             this.titleHireDate.TabIndex = 4;
             this.titleHireDate.Text = "Hire Date";
             // 
             // titleGender
             // 
             this.titleGender.AutoSize = true;
-            this.titleGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.titleGender.Location = new System.Drawing.Point(615, 122);
+            this.titleGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.titleGender.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.titleGender.Location = new System.Drawing.Point(1020, 138);
             this.titleGender.Name = "titleGender";
-            this.titleGender.Size = new System.Drawing.Size(56, 17);
+            this.titleGender.Size = new System.Drawing.Size(74, 24);
             this.titleGender.TabIndex = 5;
             this.titleGender.Text = "Gender";
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(131, 203);
+            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtEmail.Location = new System.Drawing.Point(259, 240);
+            this.txtEmail.MaximumSize = new System.Drawing.Size(607, 32);
+            this.txtEmail.MinimumSize = new System.Drawing.Size(607, 32);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(417, 20);
+            this.txtEmail.Size = new System.Drawing.Size(607, 26);
             this.txtEmail.TabIndex = 3;
             // 
             // titleEmail
             // 
             this.titleEmail.AutoSize = true;
-            this.titleEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.titleEmail.Location = new System.Drawing.Point(74, 203);
+            this.titleEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.titleEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.titleEmail.Location = new System.Drawing.Point(172, 240);
             this.titleEmail.Name = "titleEmail";
-            this.titleEmail.Size = new System.Drawing.Size(42, 17);
+            this.titleEmail.Size = new System.Drawing.Size(57, 24);
             this.titleEmail.TabIndex = 9;
             this.titleEmail.Text = "Email";
             // 
             // txtGender
             // 
+            this.txtGender.BackColor = System.Drawing.SystemColors.Window;
+            this.txtGender.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txtGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtGender.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtGender.FormattingEnabled = true;
             this.txtGender.Items.AddRange(new object[] {
             "Male",
             "Female",
             "Other"});
-            this.txtGender.Location = new System.Drawing.Point(697, 121);
+            this.txtGender.Location = new System.Drawing.Point(1126, 138);
+            this.txtGender.MaximumSize = new System.Drawing.Size(607, 0);
+            this.txtGender.MinimumSize = new System.Drawing.Size(607, 0);
             this.txtGender.Name = "txtGender";
-            this.txtGender.Size = new System.Drawing.Size(417, 21);
+            this.txtGender.Size = new System.Drawing.Size(607, 28);
             this.txtGender.TabIndex = 4;
             // 
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnSave.Location = new System.Drawing.Point(774, 270);
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnSave.Location = new System.Drawing.Point(1493, 336);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(127, 29);
+            this.btnSave.Size = new System.Drawing.Size(135, 39);
             this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Save Record";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -213,11 +245,12 @@
             // btnUpdate
             // 
             this.btnUpdate.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnUpdate.Location = new System.Drawing.Point(907, 270);
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnUpdate.Location = new System.Drawing.Point(1634, 336);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(127, 29);
+            this.btnUpdate.Size = new System.Drawing.Size(135, 39);
             this.btnUpdate.TabIndex = 8;
             this.btnUpdate.Text = "Update Record";
             this.btnUpdate.UseVisualStyleBackColor = false;
@@ -225,13 +258,14 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnDelete.BackColor = System.Drawing.Color.Gray;
+            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnDelete.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnDelete.Location = new System.Drawing.Point(1040, 270);
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnDelete.ForeColor = System.Drawing.Color.White;
+            this.btnDelete.Location = new System.Drawing.Point(1775, 336);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(98, 29);
+            this.btnDelete.Size = new System.Drawing.Size(104, 39);
             this.btnDelete.TabIndex = 9;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = false;
@@ -240,8 +274,20 @@
             // dgvEmployee
             // 
             this.dgvEmployee.AllowUserToAddRows = false;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvEmployee.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvEmployee.AutoGenerateColumns = false;
             this.dgvEmployee.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvEmployee.BackgroundColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.dgvEmployee.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.MediumSeaGreen;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEmployee.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEmployee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn,
@@ -252,10 +298,21 @@
             this.hireDateDataGridViewTextBoxColumn,
             this.salaryDataGridViewTextBoxColumn});
             this.dgvEmployee.DataSource = this.employeeBindingSource;
-            this.dgvEmployee.Location = new System.Drawing.Point(43, 323);
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Goldenrod;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEmployee.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvEmployee.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvEmployee.GridColor = System.Drawing.Color.LavenderBlush;
+            this.dgvEmployee.Location = new System.Drawing.Point(43, 392);
             this.dgvEmployee.Name = "dgvEmployee";
             this.dgvEmployee.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEmployee.Size = new System.Drawing.Size(1095, 426);
+            this.dgvEmployee.Size = new System.Drawing.Size(1836, 553);
             this.dgvEmployee.TabIndex = 10;
             this.dgvEmployee.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployee_CellClick);
             // 
@@ -319,10 +376,15 @@
             // 
             // dtHireDate
             // 
+            this.dtHireDate.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dtHireDate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dtHireDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.dtHireDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtHireDate.Location = new System.Drawing.Point(697, 163);
+            this.dtHireDate.Location = new System.Drawing.Point(1126, 189);
+            this.dtHireDate.MaximumSize = new System.Drawing.Size(607, 32);
+            this.dtHireDate.MinimumSize = new System.Drawing.Size(607, 32);
             this.dtHireDate.Name = "dtHireDate";
-            this.dtHireDate.Size = new System.Drawing.Size(417, 20);
+            this.dtHireDate.Size = new System.Drawing.Size(607, 32);
             this.dtHireDate.TabIndex = 5;
             // 
             // employeeTableAdapter
@@ -332,12 +394,13 @@
             // btnClose
             // 
             this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnClose.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnClose.Location = new System.Drawing.Point(1070, 65);
+            this.btnClose.Location = new System.Drawing.Point(1802, 83);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(68, 28);
+            this.btnClose.Size = new System.Drawing.Size(77, 37);
             this.btnClose.TabIndex = 11;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = false;
@@ -346,11 +409,12 @@
             // btnClear
             // 
             this.btnClear.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnClear.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnClear.Location = new System.Drawing.Point(43, 255);
+            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnClear.Location = new System.Drawing.Point(259, 289);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(127, 29);
+            this.btnClear.Size = new System.Drawing.Size(135, 39);
             this.btnClear.TabIndex = 7;
             this.btnClear.Text = "Clear Fields";
             this.btnClear.UseVisualStyleBackColor = false;
@@ -360,9 +424,10 @@
             // 
             this.invalidFirstName.AutoSize = true;
             this.invalidFirstName.Enabled = false;
-            this.invalidFirstName.Location = new System.Drawing.Point(138, 144);
+            this.invalidFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.invalidFirstName.Location = new System.Drawing.Point(266, 169);
             this.invalidFirstName.Name = "invalidFirstName";
-            this.invalidFirstName.Size = new System.Drawing.Size(0, 13);
+            this.invalidFirstName.Size = new System.Drawing.Size(0, 17);
             this.invalidFirstName.TabIndex = 12;
             this.invalidFirstName.Tag = "";
             // 
@@ -370,27 +435,30 @@
             // 
             this.invalidLastName.AutoSize = true;
             this.invalidLastName.Enabled = false;
-            this.invalidLastName.Location = new System.Drawing.Point(138, 187);
+            this.invalidLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.invalidLastName.Location = new System.Drawing.Point(266, 220);
             this.invalidLastName.Name = "invalidLastName";
-            this.invalidLastName.Size = new System.Drawing.Size(0, 13);
+            this.invalidLastName.Size = new System.Drawing.Size(0, 17);
             this.invalidLastName.TabIndex = 13;
             // 
             // invalidEmail
             // 
             this.invalidEmail.AutoSize = true;
             this.invalidEmail.Enabled = false;
-            this.invalidEmail.Location = new System.Drawing.Point(135, 226);
+            this.invalidEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.invalidEmail.Location = new System.Drawing.Point(266, 275);
             this.invalidEmail.Name = "invalidEmail";
-            this.invalidEmail.Size = new System.Drawing.Size(0, 13);
+            this.invalidEmail.Size = new System.Drawing.Size(0, 17);
             this.invalidEmail.TabIndex = 14;
             // 
             // invalidGender
             // 
             this.invalidGender.AutoSize = true;
             this.invalidGender.Enabled = false;
-            this.invalidGender.Location = new System.Drawing.Point(703, 145);
+            this.invalidGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.invalidGender.Location = new System.Drawing.Point(1133, 169);
             this.invalidGender.Name = "invalidGender";
-            this.invalidGender.Size = new System.Drawing.Size(0, 13);
+            this.invalidGender.Size = new System.Drawing.Size(0, 17);
             this.invalidGender.TabIndex = 15;
             this.invalidGender.Tag = "";
             // 
@@ -398,9 +466,10 @@
             // 
             this.invalidSalary.AutoSize = true;
             this.invalidSalary.Enabled = false;
-            this.invalidSalary.Location = new System.Drawing.Point(703, 226);
+            this.invalidSalary.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.invalidSalary.Location = new System.Drawing.Point(1133, 275);
             this.invalidSalary.Name = "invalidSalary";
-            this.invalidSalary.Size = new System.Drawing.Size(0, 13);
+            this.invalidSalary.Size = new System.Drawing.Size(0, 17);
             this.invalidSalary.TabIndex = 17;
             this.invalidSalary.Tag = "";
             // 
@@ -414,7 +483,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1223, 786);
+            this.BackColor = System.Drawing.Color.Ivory;
+            this.ClientSize = new System.Drawing.Size(1879, 793);
             this.Controls.Add(this.invalidSalary);
             this.Controls.Add(this.invalidGender);
             this.Controls.Add(this.invalidEmail);
